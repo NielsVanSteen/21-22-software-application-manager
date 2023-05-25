@@ -1,0 +1,85 @@
+﻿@using SoftwareApplicationManager.BL.Domain
+@model SoftwareApplicationManager.UI.MVC.Models.AddSoftwareApplicationModel
+@{
+    //ViewData["Title"] = "SoftwareApplication";
+    ViewBag.Title = "Software Application | Add";
+}
+
+<h2>Create a Software Application</h2>
+
+
+<form asp-controller="SoftwareApplication" asp-action="Add" method="post" enctype="multipart/form-data">
+    
+    <article class="add-container">
+        
+        <!-- Image -->
+        <div class="form-group" id="addApplicationImage">
+            <i class="fas fa-image" id="addImageClick"></i>
+            <img class="image-preview" id="imagePreview" onerror="this.style.display='none'">
+            <input asp-for="@Model.Image" class="custom-file-input" id="customImage">
+            <span asp-validation-for="@Model.Image" class="text-danger"></span>
+        </div>
+
+        <!-- Name -->
+        <div class="form-group">
+            <input asp-for="@Model.SoftwareApplication.Name" class="form-control" required>
+            <label asp-for="@Model.SoftwareApplication.Name">Name</label>
+            <span asp-validation-for="@Model.SoftwareApplication.Name" class="text-danger"></span>
+        </div>
+        
+        <!-- Release date -->
+        <div class="form-group">
+            <input asp-for="@Model.SoftwareApplication.ReleaseDate" class="form-control" id="date">
+            <label asp-for="@Model.SoftwareApplication.ReleaseDate">Release Date</label>
+            <span asp-validation-for="@Model.SoftwareApplication.ReleaseDate" class="text-danger"></span>
+        </div>
+        
+        <!-- Description -->
+        <div class="form-group" id="addDescription">
+            <textarea asp-for="@Model.SoftwareApplication.Description" class="form-control" required></textarea>
+            <label asp-for="@Model.SoftwareApplication.Description">Description</label>
+            <span asp-validation-for="@Model.SoftwareApplication.Description" class="text-danger"></span>
+        </div> 
+
+        <!-- Application type -->
+        <div class="form-group form-group-select">
+            <select asp-for="@Model.SoftwareApplication.ApplicationType" asp-items="@Html.GetEnumSelectList<AppType.Type>()" class="form-control" required></select>
+            <label asp-for="@Model.SoftwareApplication.ApplicationType">Application Type</label>
+            <span asp-validation-for="@Model.SoftwareApplication.ApplicationType" class="text-danger"></span>
+        </div>
+        
+        <!-- Downloads -->
+        <div class="form-group">
+            <input asp-for="@Model.SoftwareApplication.Downloads" class="form-control" required>
+            <label asp-for="@Model.SoftwareApplication.Downloads">Downloads</label>
+            <span asp-validation-for="@Model.SoftwareApplication.Downloads" class="text-danger"></span>
+        </div>
+        
+        <!-- Developer -->
+        <div class="form-group  form-group-select">
+            <select class="form-select form-control" aria-label="Default select example"
+                    asp-for="@Model.DeveloperId" asp-items="@(new SelectList(@ViewBag.Developers, nameof(Developer.DeveloperId), nameof(Developer.Name)))" required>
+            </select>
+            <label asp-for="@Model.SoftwareApplication.Developer">Developer</label>
+            <span asp-validation-for="@Model.SoftwareApplication.Developer" class="text-danger"></span>
+        </div>
+        
+        <!-- Score -->
+        <div class="form-group form-slider-container">
+            <input asp-for="@Model.SoftwareApplication.Score" type="range" class="form-control slider" min="0" max="10" step="1" value="5" required>
+            <label asp-for="@Model.SoftwareApplication.Score">Score</label>
+            <span asp-validation-for="@Model.SoftwareApplication.Score" class="text-danger"></span>
+        </div>
+        
+        <!-- Submit -->
+        <div class="form-group">
+            <button type="submit">Create</button>
+        </div>
+
+    </article>
+    
+</form>
+
+<script src="~/js/add.js" asp-append-version="true"></script>
+
+ 

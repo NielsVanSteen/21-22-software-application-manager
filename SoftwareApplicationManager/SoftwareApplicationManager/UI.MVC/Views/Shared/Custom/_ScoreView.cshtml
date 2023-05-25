@@ -1,0 +1,29 @@
+﻿@model System.Double?
+
+<div class="item-score">
+    @{
+        int i = 0;
+        double score = (Model ?? 0) / 2;
+        int scoreInt = (int) score;
+        double afterComma = score - scoreInt;
+    }
+    @* Score = 0-10, stars = 0-5 -> divide score by 2, cast to int and place the fully colored stars.  *@
+    @for (; i < (int)score; i++)
+    {
+        <i class="fas fa-star"></i>
+    }
+    @* Check if the number after the comma in score is greater than 0.5 -> if so place a half colored star. *@
+    @if (Math.Round(afterComma,MidpointRounding.AwayFromZero) > 0 && ++i > 0) @* '++i == 0' is only done to increment the i if the if statement is executed. *@
+    {
+        <div class="score-half-star">
+            <i class="fas fa-star fa-star-grey"></i>
+            <i class="fas fa-star-half"></i>
+        </div>
+    }
+    @* Place the remaining stars (not colored / gray) *@
+    @for (int e = 0; e < 5 - i; e++)
+    {
+        <i class="fas fa-star fa-star-grey"></i>
+    }
+    <p class="score-number">@score</p>
+</div>

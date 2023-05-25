@@ -1,0 +1,120 @@
+﻿@* @using SoftwareApplicationManager.UI.MVC.Models
+@model SoftwareApplicationManager.BL.Domain.Developer
+@{
+    //ViewData["Title"] = "SoftwareApplication";
+    ViewBag.Title = "Developer | Detail";
+    
+    // Create Object that maps a part of Developer & Operating System to a different model. -> Then You can pass that 1 model to a partial view.
+    MainDetailModel detailModel = new MainDetailModel(Model.Name, Model.Description, Model.BirthDate, Model.ProfilePicture);
+}
+
+<partial name="~/Views/Shared/Custom/_MainDetail.cshtml" model="@detailModel"/>
+
+<article class="contact-detail-wrapper different-background-color">
+    <section class="contact-container">
+        <p class="contact-title"> <i class="fas fa-phone"></i> Phone</p>
+        <p>@Model.PhoneNumber </p>
+    </section>
+    @if (@Model.Address != null)
+    {
+        <section class="contact-container">
+            <p class="contact-title"> <i class="fas fa-map-marker-alt"></i> Address</p>
+            <p>@Model.Address.Street @Model.Address.Number </p>
+            <p>@Model.Address.City @Model.Address.PostalCode</p>
+            <p>@Model.Address.Country</p>
+        </section>
+    }
+    <section class="contact-container">
+        <p class="contact-title"> <i class="far fa-envelope"></i> E-mail</p>
+        <p>@Model.Email </p>
+    </section>
+</article>
+
+<article class="developed-rated-applications-wrapper">
+    @if (@Model.DevelopedApplications.Count > 0)
+    {
+        <section class="developed-applications-container">
+            <h2>Developed Applications</h2>
+            <partial name="~/Views/SoftwareApplication/_Overview.cshtml" model="@Model.DevelopedApplications"/>
+        </section>
+    }
+    @if (@Model.RatedApplications.Count > 0)
+    {
+        <section class="rated-applications-container different-background-color">
+            <h2>Rated Applications</h2>
+            <partial name="~/Views/Rating/_Overview.cshtml" model="@Model.RatedApplications"/>
+        </section>
+        
+    }
+</article>
+*@
+ 
+
+@* Web API *@
+@{
+    ViewBag.Title = "Developer | Detail";
+}
+
+<!-- Main Developer Details. -->
+<section class="main-detail-wrapper" id="developerDetailWrapper"></section>
+
+<!-- Developer contact details. -->
+<article class="contact-detail-wrapper different-background-color" id="developerDetailContactWrapper"></article>
+
+<!-- All Ratings a Developer has written. -->
+<article class="all-developer-ratings" id="developerAllRatings"></article>
+
+<!-- Write a rating for a software application -->
+<article class="write-rating-wrapper">
+    <h2>Write a Rating</h2>
+    <section class="write-rating-container">
+        
+        <label for="ratingApplication">Select a Software Application</label>
+        <select name="ratingApplication" id="ratingApplication"></select>
+        
+        <label for="ratingTitle">Title</label>
+        <input type="text" id="ratingTitle">
+        
+        <label for="ratingDescription">Description</label>
+        <textarea name="ratingDescription" id="ratingDescription"></textarea>
+        
+        <label for="ratingScore">Score</label>
+        <input type="range" min="0" max="10" step="0.1" id="ratingScore">
+        
+        <button type="button" class="btn btn-success" id="btnWriteRating">Add Writing to a Software Application</button>
+    </section>
+</article>
+
+
+
+@* Developed Applications is omitted with web API. *@
+
+@section Scripts {
+    <script src="~/js/api/developers/detail.js" defer></script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+

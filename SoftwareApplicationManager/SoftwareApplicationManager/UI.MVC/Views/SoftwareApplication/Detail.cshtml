@@ -1,0 +1,25 @@
+﻿@using SoftwareApplicationManager.BL.Domain
+@using SoftwareApplicationManager.UI.MVC.Models
+@model SoftwareApplicationManager.BL.Domain.SoftwareApplication
+@{
+    //ViewData["Title"] = "SoftwareApplication";
+    ViewBag.Title = "Software Application | Detail";
+    
+    SoftwareApplicationDetailModel softwareApplicationDetailModel = new SoftwareApplicationDetailModel(@Model, false);
+}
+
+<h2>@Model.Name Details</h2>
+<partial name="~/Views/SoftwareApplication/_SoftwareApplicationDetail.cshtml" model="@softwareApplicationDetailModel"/>
+
+<article class="item-overview-grid-view different-background-color">
+    <h2>Available On </h2>
+    <div class="flex-container">
+        <partial name="~/Views/OperatingSystem/_Overview.cshtml" model="@Model.AvailableOnOperationSystems"/>
+    </div>
+</article>
+
+@if (@Model.Ratings.Count > 0)
+{
+    <h2> Ratings </h2>
+    <partial name="~/Views/Rating/_Overview.cshtml" model="@Model.Ratings"/>
+}

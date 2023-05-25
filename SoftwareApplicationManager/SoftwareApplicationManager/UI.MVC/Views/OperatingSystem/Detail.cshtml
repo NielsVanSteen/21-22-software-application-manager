@@ -1,0 +1,17 @@
+﻿@using SoftwareApplicationManager.BL.Domain
+@using SoftwareApplicationManager.UI.MVC.Models
+@model SoftwareApplicationManager.BL.Domain.OperatingSystem
+@{
+    //ViewData["Title"] = "SoftwareApplication";
+    ViewBag.Title = "Operating System | Detail";
+    
+    // Create Object that maps a part of Developer & Operating System to a different model. -> Then You can pass that 1 model to a partial view.
+    MainDetailModel detailModel = new MainDetailModel(Model.Name, Model.Description, Model.ReleaseDate, Model.BannerImage);
+}
+
+<partial name="~/Views/Shared/Custom/_MainDetail.cshtml" model="@detailModel"/>
+
+<article class="main-list-view-container different-background-color">
+    <h2> Available Software Applications on @Model.Name </h2>
+    <partial name="~/Views/SoftwareApplication/_Overview.cshtml" model="@Model.SoftwareApplications"/>
+</article>

@@ -1,0 +1,15 @@
+﻿@using SoftwareApplicationManager.BL
+@model SoftwareApplicationManager.UI.MVC.Models.MainDetailModel
+
+<section class="main-detail-wrapper">
+    <figure>
+        <img src="~/media/images/@Model.ImageUrl" alt="@Model.Name" class="main-detail-image">
+    </figure>
+    <div class="main-detail-info-container">
+        <h3>@Model.Name</h3>
+        <p class="date"> <i class="far fa-calendar-minus"></i> @Model.Date.ToString("dd MMMM yyyy") </p>
+        <p class="description">
+            @Model.Description
+        </p>
+    </div>
+</section>

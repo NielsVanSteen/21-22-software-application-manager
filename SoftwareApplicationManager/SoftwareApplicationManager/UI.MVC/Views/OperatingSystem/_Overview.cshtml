@@ -1,0 +1,21 @@
+﻿@using OperatingSystem = SoftwareApplicationManager.BL.Domain.OperatingSystem
+@model System.Collections.Generic.IEnumerable<SoftwareApplicationManager.BL.Domain.OperatingSystem>
+
+@foreach (OperatingSystem operatingSystem in Model) {
+    <section class="item-overview item-overview-no-image item-overview-no-description-height">
+        <div class="item-other-wrapper">
+            <h3>@operatingSystem.Name</h3>
+            <p class="item-overview-description">
+                @(operatingSystem.Description ?? "No Description..")
+            </p>
+            <ul class="item-tags">
+                <li>@operatingSystem.ReleaseDate.ToString("dd MMMM yyyy")</li>
+            </ul>
+            <div class="item-inner-container">
+                <div class="item-details-container item-details-small item-details-full-width">
+                    <a class="item-details-link" asp-area="" asp-controller="OperatingSystem" asp-action="Detail" asp-route-id="@operatingSystem.OperatingSystemId" >Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+}

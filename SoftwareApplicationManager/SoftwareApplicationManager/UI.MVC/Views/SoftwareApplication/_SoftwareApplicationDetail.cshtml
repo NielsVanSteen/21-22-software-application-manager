@@ -1,0 +1,30 @@
+﻿@using SoftwareApplicationManager.BL
+@using SoftwareApplicationManager.BL.Domain
+@using SoftwareApplicationManager.UI.MVC.Models
+@model SoftwareApplicationManager.UI.MVC.Models.SoftwareApplicationDetailModel
+
+<section class="item-overview">
+    <figure class="item-figure">
+        <img src="~/media/images/@Model.SoftwareApplication.ImagePath" alt="" class="item-image">
+    </figure>
+    <div class="item-other-wrapper">
+        <h3>@(Model.SoftwareApplication.Developer == null ? "Unknown" : @Model.SoftwareApplication.Developer.Name) - @Model.SoftwareApplication.Name</h3>
+        <p class="item-overview-description">
+            @Model.SoftwareApplication.Description
+        </p>
+        <ul class="item-tags">
+            <li>@Model.SoftwareApplication.ReleaseDate.ToString("dd MMMM yyyy")</li>
+            <li>@Model.SoftwareApplication.Downloads.FormatNumber() Downloads</li>
+            <li>@AppType.Description[(byte)Model.SoftwareApplication.ApplicationType]</li>
+        </ul>
+        <div class="item-inner-container">
+            <partial name="~/Views/Shared/Custom/_ScoreView.cshtml" model="@Model.SoftwareApplication.Score"/>
+            @if (@Model.IncludeDetailsLink)
+            {
+                <div class="item-details-container">
+                    <a class="item-details-link" asp-area="" asp-controller="SoftwareApplication" asp-action="Detail" asp-route-id="@Model.SoftwareApplication.SoftwareApplicationId" >Details</a>
+                </div>
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,35 @@
+﻿### Retrieving all Developers.
+GET https://localhost:5001/api/Developers HTTP/1.1
+
+### Retrieving a single Developer.
+GET https://localhost:5001/api/Developers/1 HTTP/1.1
+
+### Inserting a Developer.
+POST https://localhost:5001/api/Developers
+Content-Type: application/json
+
+{"developerId": 3, "name": "Adobe", "description": "Adobe Inc.", "birthDate": "2000-01-01", "profilePicture": "rider.png", "phoneNumber": "0123 45 67 89", "email": "adobe@contact.com" }
+
+### Updating a Developer (Success)
+PUT https://localhost:5001/api/Developers/3
+Content-Type: application/json
+
+{"developerId": 3, "name": "Adobe Inc.", "description": "Adobe Inc.", "birthDate": "2002-01-02", "profilePicture": "intellij.png", "phoneNumber": "9876 54 32 10", "email": "adobe@contact.com" }
+
+
+### Updating a Developer (Fail)
+PUT https://localhost:5001/api/Developers/3
+Content-Type: application/json
+
+{"developerId": 3, "name": "Adobe Inc.", "description": "Adobe Inc.", "birthDate": "2002-01-02", "profilePicture": "intellij.png", "phoneNumber": "9876 54 32 10", "email": "adobe_contact.com" }
+
+### 
+GET https://localhost:5001/api/Ratings/1
+
+### Creating a Rating.
+POST https://localhost:5001/api/Ratings
+Content-Type: application/json
+
+{"title": "test", "description": "test 2", "score": 3, "postedOn": "2000-01-01", "developer": null, "softwareApplication": null }
+
+###

@@ -1,0 +1,11 @@
+﻿@using SoftwareApplicationManager.BL.Domain
+@using SoftwareApplicationManager.UI.MVC.Models
+@model System.Collections.Generic.IEnumerable<SoftwareApplicationManager.BL.Domain.SoftwareApplication>
+
+
+@foreach (SoftwareApplication softwareApplication in Model) {
+    
+    SoftwareApplicationDetailModel softwareApplicationDetailModel = new SoftwareApplicationDetailModel(softwareApplication, true);
+
+    <partial name="~/Views/SoftwareApplication/_SoftwareApplicationDetail.cshtml" model="@softwareApplicationDetailModel"/>
+} @* Foreach *@

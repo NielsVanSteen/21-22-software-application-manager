@@ -1,0 +1,28 @@
+﻿
+@using SoftwareApplicationManager.BL.Domain
+@model System.Collections.Generic.IEnumerable<SoftwareApplicationManager.BL.Domain.Rating>
+
+@foreach (Rating rating in Model) {
+    <section class="item-overview item-overview-no-image item-overview-no-description-height">
+        <div class="item-other-wrapper">
+            @if (rating.Developer == null)
+            {
+                <h3>Unknown</h3>
+            }
+            else
+            {
+                <h3><a class="other-links" asp-area="" asp-controller="Developer" asp-action="Detail" asp-route-id="@rating.Developer.DeveloperId" >@rating.Developer.Name</a></h3>
+            }
+            <p class="item-overview-description">
+                @rating.Description
+            </p>
+            <ul class="item-tags">
+                <li>@rating.PostedOn.ToString("dd MMMM yyyy")</li>
+                <li>@rating.PostedOn.ToString("HH:mm")u</li>
+            </ul>
+            <div class="item-inner-container">
+                <partial name="~/Views/Shared/Custom/_ScoreView.cshtml" model="@rating.Score"/>
+            </div>
+        </div>
+    </section>
+}
